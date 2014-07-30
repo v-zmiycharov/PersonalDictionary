@@ -102,8 +102,10 @@ namespace PersonalDictionary
         {
             if(ValidateInput())
             {
-                var examForm = new ExamForm(InitializeWords(cbxRandomLanguage.Checked, ExamDictionary));
+                this.Hide();
+                var examForm = new ExamForm(GetWords());
                 examForm.ShowDialog();
+                this.Close();
             }
             else
             {
@@ -150,9 +152,11 @@ namespace PersonalDictionary
         }
 
 
-        private Dictionary<string, string> InitializeWords(bool isFirstWordRandom, Dictionary<string, DictionaryItem> examDictionary)
+        private Dictionary<string, string> GetWords()
         {
-            var items = examDictionary.Values.ToList(); ;
+            bool isFirstWordRandom = cbxRandomLanguage.Checked;
+
+            var items = ExamDictionary.Values.ToList(); ;
             Dictionary<string, string>  words = new Dictionary<string, string>();
             if (isFirstWordRandom)
             {

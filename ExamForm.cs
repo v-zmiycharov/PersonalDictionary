@@ -26,15 +26,6 @@ namespace PersonalDictionary
             CreateInputs();
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-
-            if (e.CloseReason == CloseReason.WindowsShutDown) return;
-
-            e.Cancel = !(MessageBox.Show("Are you sure you want to exit?", "Close form", MessageBoxButtons.YesNo) == DialogResult.Yes);
-        }
-
         private void btnFinishExam_Click(object sender, EventArgs e)
         {
             string text = String.Format("You have completed {0}/{1} questions.\nAre you sure you want to finish the exam?"
@@ -42,8 +33,19 @@ namespace PersonalDictionary
 
             if((MessageBox.Show(text, "Finish exam", MessageBoxButtons.YesNo) == DialogResult.Yes))
             {
-
+                this.Hide();
+                var resultForm = new ResultForm(GetResult());
+                resultForm.ShowDialog();
+                this.Close();
             }
+        }
+
+        private void btnNewExam_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var indexForm = new IndexForm();
+            indexForm.ShowDialog();
+            this.Close();
         }
 
         private void InitializeLabels()
@@ -62,13 +64,26 @@ namespace PersonalDictionary
         {
             Seconds++;
             var ts = TimeSpan.FromSeconds(Seconds);
-            lblTime.Text = String.Format("{0}:{1}:{2}", ts.Hours, ts.Minutes, ts.Seconds);
+            lblTime.Text = String.Format("{0}:{1}:{2}", ts.Hours.ToString("00"), ts.Minutes.ToString("00"), ts.Seconds.ToString("00"));
         }
 
         private void CreateInputs()
         {
             panelWords.AutoScroll = true;
             Inputs = new Dictionary<string, TextBox>();
+
+            int maxLblWidth = 0;
+            List<Label> labels = new List<Label>();
+            
+            foreach(var key in Words.Keys)
+            {
+                Label lbl = new Label();
+                lbl.Text = key;
+                if(lbl.PreferredWidth > maxLblWidth)
+                {
+                    maxLblWidth = lbl.PreferredWidth;
+                }
+            }
 
             int i = 0;
             foreach(var key in Words.Keys)
@@ -79,13 +94,13 @@ namespace PersonalDictionary
 
                 //Initialize label's property
                 lbl.Text = key;
-                lbl.TextAlign = ContentAlignment.MiddleRight;
-                lbl.Location = new Point(20, tbx.Bottom + (i * 30));
-                lbl.AutoSize = true;
+                lbl.Location = new Point(10, tbx.Bottom + (i * 30));
+                lbl.Width = maxLblWidth;
+                lbl.TextAlign = ContentAlignment.TopRight;
 
                 //Initialize textBoxes Property
-                tbx.Location = new Point(lbl.Width, lbl.Top - 3);
-                tbx.Width = 200;
+                tbx.Location = new Point(maxLblWidth + 15, lbl.Top - 3);
+                tbx.Width = 300;
 
                 //Add the labels and text box to the form
                 panelWords.Controls.Add(lbl);
@@ -95,6 +110,33 @@ namespace PersonalDictionary
 
                 i++;
             }
+        }
+
+        private Result GetResult()
+        {
+            Result result = new Result() { FinalTime = TimeSpan.FromSeconds(Seconds) };
+            result.ResultWords = new List<ResultWordItem>();
+            foreach(var key in Words.Keys)
+            {
+                result.ResultWords.Add(new ResultWordItem()
+                    {
+                        FirstWord = key,
+                        SecondWord = Words[key],
+                        InputWord = Inputs[key].Text
+                    });
+            }
+
+            return result;
+        }
+
+        private void lblQuestionsCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTime_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PersonalDictionary
 {
-    partial class ExamForm
+    partial class ResultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,78 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.lblQuestionsCount = new System.Windows.Forms.Label();
-            this.btnFinishExam = new System.Windows.Forms.Button();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.lblTime = new System.Windows.Forms.Label();
             this.panelWords = new PersonalDictionary.CustomPanel();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.btnRetakeExam = new System.Windows.Forms.Button();
+            this.lblQuestionsCount = new System.Windows.Forms.Label();
             this.btnNewExam = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // lblQuestionsCount
-            // 
-            this.lblQuestionsCount.AutoSize = true;
-            this.lblQuestionsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblQuestionsCount.Location = new System.Drawing.Point(780, 31);
-            this.lblQuestionsCount.Name = "lblQuestionsCount";
-            this.lblQuestionsCount.Size = new System.Drawing.Size(76, 17);
-            this.lblQuestionsCount.TabIndex = 1;
-            this.lblQuestionsCount.Text = "Questions:";
-            this.lblQuestionsCount.Click += new System.EventHandler(this.lblQuestionsCount_Click);
-            // 
-            // btnFinishExam
-            // 
-            this.btnFinishExam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnFinishExam.Location = new System.Drawing.Point(783, 113);
-            this.btnFinishExam.Name = "btnFinishExam";
-            this.btnFinishExam.Size = new System.Drawing.Size(153, 36);
-            this.btnFinishExam.TabIndex = 3;
-            this.btnFinishExam.Text = "Finish exam!";
-            this.btnFinishExam.UseVisualStyleBackColor = true;
-            this.btnFinishExam.Click += new System.EventHandler(this.btnFinishExam_Click);
-            // 
-            // lblTime
-            // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTime.Location = new System.Drawing.Point(777, 58);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(74, 31);
-            this.lblTime.TabIndex = 4;
-            this.lblTime.Text = "Time";
-            this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // panelWords
             // 
             this.panelWords.Location = new System.Drawing.Point(12, 31);
             this.panelWords.Name = "panelWords";
-            this.panelWords.Size = new System.Drawing.Size(708, 476);
-            this.panelWords.TabIndex = 0;
+            this.panelWords.Padding = new System.Windows.Forms.Padding(15);
+            this.panelWords.Size = new System.Drawing.Size(677, 468);
+            this.panelWords.TabIndex = 1;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTime.Location = new System.Drawing.Point(714, 57);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(74, 31);
+            this.lblTime.TabIndex = 7;
+            this.lblTime.Text = "Time";
+            // 
+            // btnRetakeExam
+            // 
+            this.btnRetakeExam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRetakeExam.Location = new System.Drawing.Point(720, 113);
+            this.btnRetakeExam.Name = "btnRetakeExam";
+            this.btnRetakeExam.Size = new System.Drawing.Size(153, 36);
+            this.btnRetakeExam.TabIndex = 6;
+            this.btnRetakeExam.Text = "Retake exam!";
+            this.btnRetakeExam.UseVisualStyleBackColor = true;
+            this.btnRetakeExam.Click += new System.EventHandler(this.btnRetakeExam_Click);
+            // 
+            // lblQuestionsCount
+            // 
+            this.lblQuestionsCount.AutoSize = true;
+            this.lblQuestionsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblQuestionsCount.Location = new System.Drawing.Point(717, 31);
+            this.lblQuestionsCount.Name = "lblQuestionsCount";
+            this.lblQuestionsCount.Size = new System.Drawing.Size(76, 17);
+            this.lblQuestionsCount.TabIndex = 5;
+            this.lblQuestionsCount.Text = "Questions:";
             // 
             // btnNewExam
             // 
             this.btnNewExam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNewExam.Location = new System.Drawing.Point(783, 471);
+            this.btnNewExam.Location = new System.Drawing.Point(720, 463);
             this.btnNewExam.Name = "btnNewExam";
             this.btnNewExam.Size = new System.Drawing.Size(153, 36);
-            this.btnNewExam.TabIndex = 9;
+            this.btnNewExam.TabIndex = 8;
             this.btnNewExam.Text = "New exam!";
             this.btnNewExam.UseVisualStyleBackColor = true;
             this.btnNewExam.Click += new System.EventHandler(this.btnNewExam_Click);
             // 
-            // ExamForm
+            // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 519);
+            this.ClientSize = new System.Drawing.Size(935, 511);
             this.Controls.Add(this.btnNewExam);
             this.Controls.Add(this.lblTime);
-            this.Controls.Add(this.btnFinishExam);
+            this.Controls.Add(this.btnRetakeExam);
             this.Controls.Add(this.lblQuestionsCount);
             this.Controls.Add(this.panelWords);
-            this.Name = "ExamForm";
-            this.Text = "ExamForm";
+            this.Name = "ResultForm";
+            this.Text = "ResultForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,10 +105,9 @@
         #endregion
 
         private CustomPanel panelWords;
-        private System.Windows.Forms.Label lblQuestionsCount;
-        private System.Windows.Forms.Button btnFinishExam;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Button btnRetakeExam;
+        private System.Windows.Forms.Label lblQuestionsCount;
         private System.Windows.Forms.Button btnNewExam;
     }
 }
