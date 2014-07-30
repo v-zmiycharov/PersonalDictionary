@@ -102,7 +102,7 @@ namespace PersonalDictionary
         {
             if(ValidateInput())
             {
-                var examForm = new ExamForm(cbxRandomLanguage.Checked, ExamDictionary);
+                var examForm = new ExamForm(InitializeWords(cbxRandomLanguage.Checked, ExamDictionary));
                 examForm.ShowDialog();
             }
             else
@@ -148,5 +148,37 @@ namespace PersonalDictionary
             var values = ExamDictionary != null ? ExamDictionary.Values : null;
             return values != null && values.Count > 0 && !values.Any(e => (e.FirstWord == null || e.FirstWord == "") || (e.SecondWord == null || e.SecondWord == ""));
         }
+
+
+        private Dictionary<string, string> InitializeWords(bool isFirstWordRandom, Dictionary<string, DictionaryItem> examDictionary)
+        {
+            var items = examDictionary.Values.ToList(); ;
+            Dictionary<string, string>  words = new Dictionary<string, string>();
+            if (isFirstWordRandom)
+            {
+                var rand = new Random();
+                foreach (var item in items)
+                {
+                    if (rand.Next(2) == 0)
+                    {
+                        words.Add(item.FirstWord, item.SecondWord);
+                    }
+                    else
+                    {
+                        words.Add(item.SecondWord, item.FirstWord);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in items)
+                {
+                    words.Add(item.FirstWord, item.SecondWord);
+                }
+            }
+
+            return words;
+        }
+
     }
 }
