@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbxRandomLanguage = new System.Windows.Forms.CheckBox();
-            this.startExamBtn = new System.Windows.Forms.Button();
+            this.btnStartExam = new System.Windows.Forms.Button();
             this.File1Upload = new System.Windows.Forms.Button();
             this.File2Upload = new System.Windows.Forms.Button();
             this.lblFile1Chosen = new System.Windows.Forms.Label();
@@ -66,14 +66,15 @@
             this.cbxRandomLanguage.Text = "First word in random language";
             this.cbxRandomLanguage.UseVisualStyleBackColor = true;
             // 
-            // startExamBtn
+            // btnStartExam
             // 
-            this.startExamBtn.Location = new System.Drawing.Point(256, 64);
-            this.startExamBtn.Name = "startExamBtn";
-            this.startExamBtn.Size = new System.Drawing.Size(143, 23);
-            this.startExamBtn.TabIndex = 9;
-            this.startExamBtn.Text = "Start exam!";
-            this.startExamBtn.UseVisualStyleBackColor = true;
+            this.btnStartExam.Location = new System.Drawing.Point(256, 64);
+            this.btnStartExam.Name = "btnStartExam";
+            this.btnStartExam.Size = new System.Drawing.Size(143, 23);
+            this.btnStartExam.TabIndex = 9;
+            this.btnStartExam.Text = "Start exam!";
+            this.btnStartExam.UseVisualStyleBackColor = true;
+            this.btnStartExam.Click += new System.EventHandler(this.startExamBtn_Click);
             // 
             // File1Upload
             // 
@@ -120,7 +121,7 @@
             this.Controls.Add(this.lblFile1Chosen);
             this.Controls.Add(this.File2Upload);
             this.Controls.Add(this.File1Upload);
-            this.Controls.Add(this.startExamBtn);
+            this.Controls.Add(this.btnStartExam);
             this.Controls.Add(this.cbxRandomLanguage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -136,7 +137,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbxRandomLanguage;
-        private System.Windows.Forms.Button startExamBtn;
+        private System.Windows.Forms.Button btnStartExam;
         private System.Windows.Forms.Button File1Upload;
         private System.Windows.Forms.Button File2Upload;
         private System.Windows.Forms.Label lblFile1Chosen;

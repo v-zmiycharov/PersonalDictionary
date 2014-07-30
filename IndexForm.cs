@@ -43,7 +43,7 @@ namespace PersonalDictionary
                         {
                             string key = splitted[0];
                             string firstWordValue = splitted[1];
-                            if(ExamDictionary.ContainsKey(key))
+                            if (ExamDictionary.ContainsKey(key))
                             {
                                 ExamDictionary[key].FirstWord = firstWordValue;
                             }
@@ -98,6 +98,19 @@ namespace PersonalDictionary
             }
         }
 
+        private void startExamBtn_Click(object sender, EventArgs e)
+        {
+            if(ValidateInput())
+            {
+                var examForm = new ExamForm(cbxRandomLanguage.Checked, ExamDictionary);
+                examForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Incorrect input!");
+            }
+        }
+
         private void ClearExamDictionaryFirstWords()
         {
             var helperDictionary = new Dictionary<string, DictionaryItem>(ExamDictionary);
@@ -119,7 +132,7 @@ namespace PersonalDictionary
             var helperDictionary = new Dictionary<string, DictionaryItem>(ExamDictionary);
             foreach (var item in helperDictionary)
             {
-                if(String.IsNullOrWhiteSpace(item.Value.FirstWord))
+                if (String.IsNullOrWhiteSpace(item.Value.FirstWord))
                 {
                     ExamDictionary.Remove(item.Key);
                 }
@@ -128,6 +141,12 @@ namespace PersonalDictionary
                     ExamDictionary[item.Key].SecondWord = String.Empty;
                 }
             }
+        }
+
+        private bool ValidateInput()
+        {
+            var values = ExamDictionary != null ? ExamDictionary.Values : null;
+            return values != null && values.Count > 0 && !values.Any(e => (e.FirstWord == null || e.FirstWord == "") || (e.SecondWord == null || e.SecondWord == ""));
         }
     }
 }
