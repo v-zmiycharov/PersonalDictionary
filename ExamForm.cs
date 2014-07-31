@@ -17,11 +17,13 @@ namespace PersonalDictionary
         private Dictionary<string, string> Words { get; set; }
         private Dictionary<string, TextBox> Inputs { get; set; }
         private int Seconds { get; set; }
+        public IndexForm IndexForm { get; set; }
 
-        public ExamForm(Dictionary<string, string> words)
+        public ExamForm(IndexForm indexForm)
         {
             InitializeComponent();
-            Words = words;
+            this.IndexForm = indexForm;
+            Words = GetWords();
             InitializeLabels();
             CreateInputs();
         }
@@ -34,7 +36,7 @@ namespace PersonalDictionary
             if((MessageBox.Show(text, "Finish exam", MessageBoxButtons.YesNo) == DialogResult.Yes))
             {
                 this.Hide();
-                var resultForm = new ResultForm(GetResult());
+                var resultForm = new ResultForm(GetResult(), this.IndexForm);
                 resultForm.ShowDialog();
                 this.Close();
             }
@@ -56,15 +58,24 @@ namespace PersonalDictionary
 
             Seconds = 0;
             // Hook up the Elapsed event for the timer.
-            timer.Tick += new EventHandler(OnTimedEvent);
+            if(this.IndexForm.ShowTimer)
+                timer.Tick += new EventHandler(UpdateLabelAndSecondsTimedEvent);
+            else
+                timer.Tick += new EventHandler(UpdateSecondsTimedEvent);
+
             timer.Start();
         }
 
-        private void OnTimedEvent(object source, EventArgs e)
+        private void UpdateLabelAndSecondsTimedEvent(object source, EventArgs e)
         {
             Seconds++;
             var ts = TimeSpan.FromSeconds(Seconds);
             lblTime.Text = String.Format("{0}:{1}:{2}", ts.Hours.ToString("00"), ts.Minutes.ToString("00"), ts.Seconds.ToString("00"));
+        }
+
+        private void UpdateSecondsTimedEvent(object source, EventArgs e)
+        {
+            Seconds++;
         }
 
         private void CreateInputs()
@@ -129,14 +140,43 @@ namespace PersonalDictionary
             return result;
         }
 
-        private void lblQuestionsCount_Click(object sender, EventArgs e)
+        private Dictionary<string, string> GetWords()
         {
+            bool isFirstWordRandom = IndexForm.IsFirstWordRandom;
 
-        }
+            var items = IndexForm.ExamDictionary.Values.ToList();
+            items.Shuffle();
+            
+            if(this.IndexForm.Restriction.HasValue)
+            {
+                items = items.Take(this.IndexForm.Restriction.Value).ToList();
+            }
 
-        private void lblTime_Click(object sender, EventArgs e)
-        {
+            Dictionary<string, string> words = new Dictionary<string, string>();
+            if (isFirstWordRandom)
+            {
+                var rand = new Random();
+                foreach (var item in items)
+                {
+                    if (rand.Next(2) == 0)
+                    {
+                        words.Add(item.FirstWord, item.SecondWord);
+                    }
+                    else
+                    {
+                        words.Add(item.SecondWord, item.FirstWord);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in items)
+                {
+                    words.Add(item.FirstWord, item.SecondWord);
+                }
+            }
 
+            return words;
         }
     }
 }

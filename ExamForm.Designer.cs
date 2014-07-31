@@ -46,7 +46,6 @@
             this.lblQuestionsCount.Size = new System.Drawing.Size(76, 17);
             this.lblQuestionsCount.TabIndex = 1;
             this.lblQuestionsCount.Text = "Questions:";
-            this.lblQuestionsCount.Click += new System.EventHandler(this.lblQuestionsCount_Click);
             // 
             // btnFinishExam
             // 
@@ -68,7 +67,6 @@
             this.lblTime.Size = new System.Drawing.Size(74, 31);
             this.lblTime.TabIndex = 4;
             this.lblTime.Text = "Time";
-            this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // panelWords
             // 

@@ -36,6 +36,10 @@
             this.File2Upload = new System.Windows.Forms.Button();
             this.lblFile1Chosen = new System.Windows.Forms.Label();
             this.lblFile2Chosen = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbxQuestionsCount = new System.Windows.Forms.TextBox();
+            this.cbxShowTimer = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +72,7 @@
             // 
             // btnStartExam
             // 
-            this.btnStartExam.Location = new System.Drawing.Point(256, 64);
+            this.btnStartExam.Location = new System.Drawing.Point(256, 118);
             this.btnStartExam.Name = "btnStartExam";
             this.btnStartExam.Size = new System.Drawing.Size(143, 23);
             this.btnStartExam.TabIndex = 9;
@@ -112,11 +116,50 @@
             this.lblFile2Chosen.Size = new System.Drawing.Size(0, 13);
             this.lblFile2Chosen.TabIndex = 13;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(230, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Take ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(347, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "questions";
+            // 
+            // tbxQuestionsCount
+            // 
+            this.tbxQuestionsCount.Location = new System.Drawing.Point(272, 68);
+            this.tbxQuestionsCount.Name = "tbxQuestionsCount";
+            this.tbxQuestionsCount.Size = new System.Drawing.Size(69, 20);
+            this.tbxQuestionsCount.TabIndex = 17;
+            // 
+            // cbxShowTimer
+            // 
+            this.cbxShowTimer.AutoSize = true;
+            this.cbxShowTimer.Location = new System.Drawing.Point(15, 91);
+            this.cbxShowTimer.Name = "cbxShowTimer";
+            this.cbxShowTimer.Size = new System.Drawing.Size(78, 17);
+            this.cbxShowTimer.TabIndex = 18;
+            this.cbxShowTimer.Text = "Show timer";
+            this.cbxShowTimer.UseVisualStyleBackColor = true;
+            // 
             // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(441, 177);
+            this.Controls.Add(this.cbxShowTimer);
+            this.Controls.Add(this.tbxQuestionsCount);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblFile2Chosen);
             this.Controls.Add(this.lblFile1Chosen);
             this.Controls.Add(this.File2Upload);
@@ -142,6 +185,10 @@
         private System.Windows.Forms.Button File2Upload;
         private System.Windows.Forms.Label lblFile1Chosen;
         private System.Windows.Forms.Label lblFile2Chosen;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbxQuestionsCount;
+        private System.Windows.Forms.CheckBox cbxShowTimer;
     }
 }
 

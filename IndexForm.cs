@@ -15,6 +15,34 @@ namespace PersonalDictionary
     {
         public Dictionary<string, DictionaryItem> ExamDictionary { get; set; }
 
+        public bool IsFirstWordRandom 
+        { 
+            get
+            {
+                return cbxRandomLanguage.Checked;
+            }
+        }
+
+        public bool ShowTimer
+        {
+            get
+            {
+                return cbxShowTimer.Checked;
+            }
+        }
+
+        public int? Restriction { 
+            get
+            {
+                int result = 0;
+                string text = tbxQuestionsCount.Text;
+                if (!String.IsNullOrWhiteSpace(text) && Int32.TryParse(text, out result))
+                    return result;
+                else
+                    return null;
+            }
+        }
+
         public IndexForm()
         {
             InitializeComponent();
@@ -103,7 +131,7 @@ namespace PersonalDictionary
             if(ValidateInput())
             {
                 this.Hide();
-                var examForm = new ExamForm(GetWords());
+                var examForm = new ExamForm(this);
                 examForm.ShowDialog();
                 this.Close();
             }
@@ -151,38 +179,6 @@ namespace PersonalDictionary
             return values != null && values.Count > 0 && !values.Any(e => (e.FirstWord == null || e.FirstWord == "") || (e.SecondWord == null || e.SecondWord == ""));
         }
 
-
-        private Dictionary<string, string> GetWords()
-        {
-            bool isFirstWordRandom = cbxRandomLanguage.Checked;
-
-            var items = ExamDictionary.Values.ToList(); ;
-            Dictionary<string, string>  words = new Dictionary<string, string>();
-            if (isFirstWordRandom)
-            {
-                var rand = new Random();
-                foreach (var item in items)
-                {
-                    if (rand.Next(2) == 0)
-                    {
-                        words.Add(item.FirstWord, item.SecondWord);
-                    }
-                    else
-                    {
-                        words.Add(item.SecondWord, item.FirstWord);
-                    }
-                }
-            }
-            else
-            {
-                foreach (var item in items)
-                {
-                    words.Add(item.FirstWord, item.SecondWord);
-                }
-            }
-
-            return words;
-        }
 
     }
 }

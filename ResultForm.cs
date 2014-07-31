@@ -13,11 +13,13 @@ namespace PersonalDictionary
     public partial class ResultForm : Form
     {
         public Result Result { get; set; }
+        public IndexForm IndexForm { get; set; }
 
-        public ResultForm(Result result)
+        public ResultForm(Result result, IndexForm indexForm)
         {
             InitializeComponent();
             Result = result;
+            IndexForm = indexForm;
             InitializeLabels();
             CreateInputLabels();
         }
@@ -25,7 +27,7 @@ namespace PersonalDictionary
         private void btnRetakeExam_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var examForm = new ExamForm(GetExamWords());
+            var examForm = new ExamForm(IndexForm);
             examForm.ShowDialog();
             this.Close();
         }
@@ -79,18 +81,6 @@ namespace PersonalDictionary
 
                 i++;
             }
-        }
-
-        private Dictionary<string, string> GetExamWords()
-        {
-            var result = new Dictionary<string, string>();
-
-            foreach (var item in Result.ResultWords)
-            {
-                result.Add(item.FirstWord, item.SecondWord);
-            }
-
-            return result;
         }
 
     }
